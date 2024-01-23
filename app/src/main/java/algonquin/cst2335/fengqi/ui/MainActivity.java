@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity {
         //The code you provided for accessing views using variableBinding is actually unnecessary.
         // Since you are already using LiveData and the Observer Pattern, the automatic updates to
         // the UI will be handled by the observer.
-        /*variableBinding.mybutton.setOnClickListener(view -> {
+        variableBinding.mybutton.setOnClickListener(view -> {
             String editString = variableBinding.myedittext.getText().toString();
             variableBinding.textview.setText("Your edit text has: " + editString);
-        });*/
+        });
     }
 }
