@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="my_primary">#B6FCB9</color>
-    <color name="my_secondary">#03A9F4</color>
-    <color name="my_statusbar">#FFEB3B</color>
-    <color name="my_text">#ED0A0A</color>
+    <color name="my_primary">#FF6F61</color> <!-- Example: a shade of red -->
+    <color name="my_secondary">#6EC6FF</color> <!-- Example: a lighter blue -->
+    <color name="my_statusbar">#FFC107</color> <!-- Example: amber -->
+    <color name="my_text">#6200EA</color> <!-- Example: deep purple -->
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>

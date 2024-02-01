@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Feng\'s Android Labs</string>
-    <string name="hello_message">Hello World!</string>
-    <string name="button_message">I\'m a button</string>
+    <string name="hello_message" translatable="false">Hello world!</string>
+    <string name="button_message" translatable="false">I\'a button</string>
+    <string name="spin_message" translatable="false">Switch</string>
+    <string name="spin_switch" translatable="false">spin switch</string>
+    <string name="flagview" translatable="false">flagview</string>
+
+    <string name="button1" translatable="false">Button 1</string>
+    <string name="button2" translatable="false">Button 2</string>
+    <string name="button3" translatable="false">Button 3</string>
+    <string name="switchtv" translatable="false">switch</string>
 </resources>
