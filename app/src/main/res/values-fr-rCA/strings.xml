@@ -1,8 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Feng\'s Android Labs</string>
-    <string name="button1">Bouton 1</string>
-    <string name="button2">Bouton 2</string>
-    <string name="button3">Bouton 3</string>
-    <string name="spin_message"> </string>
+    <string name="app_name">Les Labs Android de Feng</string>
+    <string name="hello_message" translatable="false">Bonjour le monde !</string>
+    <string name="button_message" translatable="false">Je suis un bouton</string>
+    <string name="spin_message" translatable="false">Commutateur</string>
+    <string name="spin_switch" translatable="false">Commutateur rotatif</string>
+    <string name="flagview" translatable="false">Vue du drapeau</string>
+    <string name="button1" translatable="false">Bouton 1</string>
+    <string name="button2" translatable="false">Bouton 2</string>
+    <string name="button3" translatable="false">Bouton 3</string>
+    <string name="switchtv" translatable="false">Commutateur</string>
+    <!-- Translated missing string resources -->
+    <string name="phone_number">Numéro de téléphone</string>
+    <string name="top_text_view">Vue de texte supérieure</string>
+    <string name="call_number">Appeler le numéro</string>
+    <string name="change_picture">Changer limage</string>
+    <string name="description_of_the_image">Description de limage</string>
 </resources>

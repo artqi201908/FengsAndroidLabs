@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Feng\'s Android Labs</string>
     <string name="hello_message" translatable="false">Hello world!</string>
-    <string name="button_message" translatable="false">I\'a button</string>
+    <string name="button_message" translatable="false">I\'m a button</string>
     <string name="spin_message" translatable="false">Switch</string>
     <string name="spin_switch" translatable="false">spin switch</string>
     <string name="flagview" translatable="false">flagview</string>
@@ -10,4 +10,15 @@
     <string name="button2" translatable="false">Button 2</string>
     <string name="button3" translatable="false">Button 3</string>
     <string name="switchtv" translatable="false">switch</string>
+
+    <!-- Add the missing string resources below -->
+    <string name="phone_number">Phone Number</string>
+    <string name="top_text_view">Top Text View</string>
+    <string name="call_number">Call Number</string>
+    <string name="change_picture">Change Picture</string>
+    <string name="description_of_the_image">Description of the image</string>
+
+
+
+
 </resources>
