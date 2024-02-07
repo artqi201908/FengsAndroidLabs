@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondActivity">
+
+    <TextView
+        android:id="@+id/receivedEmailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="Email will be displayed here"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Assuming you want to place the EditText below the TextView and corrected the ID -->
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="phone"
+        android:hint="@string/phone_number"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/receivedEmailTextView" />
+
+    <!-- Adjustments for Button and ImageView have been made to ensure proper constraints -->
+    <!-- Ensure all views have both horizontal and vertical constraints defined -->
+
+    <!-- Updated constraints for Button and ImageView to follow -->
+
+    <Button
+        android:id="@+id/buttonCallNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonBackgroundColor"
+        android:text="@string/call_number"
+        android:textColor="@color/buttonTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/editTextPhone"
+        app:layout_constraintTop_toTopOf="@id/editTextPhone"
+        android:layout_marginEnd="32dp"/>
+
+    <ImageView
+        android:id="@+id/imageViewCamera"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/imageViewBackgroundColor"
+        android:contentDescription="@string/description_of_the_image"
+        app:layout_constraintEnd_toStartOf="@id/buttonChangePicture"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextPhone"
+        app:srcCompat="@android:drawable/ic_menu_camera" />
+
+    <Button
+        android:id="@+id/buttonChangePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/buttonBackgroundColor"
+        android:text="@string/change_picture"
+        android:textColor="@color/buttonTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageViewCamera"
+        app:layout_constraintTop_toTopOf="@id/imageViewCamera"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"/>
+
+    <!-- The TextView for displaying the received email is set up to dynamically receive the email value -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

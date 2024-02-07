@@ -1,5 +1,40 @@
 <resources>
     <string name="app_name">Feng\'s Android Labs</string>
     <string name="hello_message">Hello World!</string>
-    <string name="button_message">I\'m a button</string>
+    <string name="button_message">Send Message</string>
+    <string name="edit_text_hint">Enter your message here</string>
+    <string name="enter_your_email_address">Enter your email address:</string>
+    <string name="type_email_here">Type email here</string>
+    <string name="type_your_password">Type your password:</string>
+    <string name="type_password_here">Type password here</string>
+    <string name="login">Login</string>
+    <string name="top_text_view">Top TextView</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="call_number">Call Number</string>
+    <string name="change_picture">Change Picture</string>
+    <string name="description_of_the_image">This is an image description</string>
+    <string name="image_view_description">Captured image</string>
+    <string name="camera_button_text">Open Camera</string>
+    <!-- Additional strings for updated or future UI elements -->
+    <string name="received_email">Received Email</string>
+    <string name="received_password">Received Password</string>
+    <!-- Common UI text -->
+    <string name="submit">Submit</string>
+    <string name="cancel">Cancel</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="close">Close</string>
+    <!-- Error messages -->
+    <string name="error_message_generic">Something went wrong, please try again.</string>
+    <!-- Accessibility -->
+    <string name="action_navigate_up">Navigate up</string>
+    <!-- Add this line for your email hint if not already added -->
+    <string name="email_hint">Email</string>
+
+    <!-- Add this line for your password hint -->
+    <string name="password_hint">Password</string>
+
+    <!-- Add this line for your login button text -->
+    <string name="login_button">Login</string>
 </resources>

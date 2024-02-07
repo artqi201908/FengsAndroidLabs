@@ -4,7 +4,11 @@
     <color name="my_secondary">#03A9F4</color>
     <color name="my_statusbar">#FFEB3B</color>
     <color name="my_text">#ED0A0A</color>
-
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Added new color resources -->
+    <color name="buttonBackgroundColor">#6200EE</color> <!-- Example color, adjust as needed -->
+    <color name="buttonTextColor">#FFFFFF</color> <!-- Example color, adjust as needed -->
+    <color name="imageViewBackgroundColor">#03DAC5</color> <!-- Example color, adjust as needed -->
 </resources>

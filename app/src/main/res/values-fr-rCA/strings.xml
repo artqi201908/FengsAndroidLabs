@@ -2,5 +2,40 @@
 <resources>
     <string name="app_name">Feng\'s Android Labs</string>
     <string name="hello_message">Bonjour tout le monde!</string>
-    <string name="button_message">Je suis un bouton</string>
+    <string name="button_message">Envoyer un message</string>
+    <string name="edit_text_hint">Entrez votre message ici</string>
+    <string name="enter_your_email_address">Entrez votre adresse e-mail :</string>
+    <string name="type_email_here">Tapez l\'email ici</string>
+    <string name="type_your_password">Tapez votre mot de passe :</string>
+    <string name="type_password_here">Tapez le mot de passe ici</string>
+    <string name="login">Connexion</string>
+    <string name="top_text_view">TextView Supérieur</string>
+    <string name="phone_number">Numéro de Téléphone</string>
+    <string name="call_number">Appeler</string>
+    <string name="change_picture">Changer l\'Image</string>
+    <string name="description_of_the_image">Ceci est une description de l\'image</string>
+    <string name="image_view_description">Image capturée</string>
+    <string name="camera_button_text">Ouvrir la caméra</string>
+    <!-- Additional translated strings for updated or future UI elements -->
+    <string name="received_email">Email reçu</string>
+    <string name="received_password">Mot de passe reçu</string>
+    <!-- Common UI text -->
+    <string name="submit">Soumettre</string>
+    <string name="cancel">Annuler</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="ok">OK</string>
+    <string name="close">Fermer</string>
+    <!-- Error messages -->
+    <string name="error_message_generic">Une erreur est survenue, veuillez réessayer.</string>
+    <!-- Accessibility -->
+    <string name="action_navigate_up">Remonter</string>
+    <!-- Email hint in French Canadian -->
+    <string name="email_hint">Courriel</string>
+
+    <!-- Password hint in French Canadian -->
+    <string name="password_hint">Mot de passe</string>
+
+    <!-- Login button text in French Canadian -->
+    <string name="login_button">Connexion</string>
 </resources>
