@@ -15,26 +15,17 @@
     <string name="description_of_the_image">This is an image description</string>
     <string name="image_view_description">Captured image</string>
     <string name="camera_button_text">Open Camera</string>
-    <!-- Additional strings for updated or future UI elements -->
     <string name="received_email">Received Email</string>
     <string name="received_password">Received Password</string>
-    <!-- Common UI text -->
     <string name="submit">Submit</string>
     <string name="cancel">Cancel</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="ok">OK</string>
     <string name="close">Close</string>
-    <!-- Error messages -->
     <string name="error_message_generic">Something went wrong, please try again.</string>
-    <!-- Accessibility -->
     <string name="action_navigate_up">Navigate up</string>
-    <!-- Add this line for your email hint if not already added -->
     <string name="email_hint">Email</string>
-
-    <!-- Add this line for your password hint -->
     <string name="password_hint">Password</string>
-
-    <!-- Add this line for your login button text -->
-    <string name="login_button">Login</string>
+    <string name="login_button_text">Login</string>
 </resources>

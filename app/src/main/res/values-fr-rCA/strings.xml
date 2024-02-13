@@ -37,5 +37,5 @@
     <string name="password_hint">Mot de passe</string>
 
     <!-- Login button text in French Canadian -->
-    <string name="login_button">Connexion</string>
+    <string name="login_button_text">Connexion</string>
 </resources>
