@@ -93,4 +93,3 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.BaseMessageViewHol
         SENT, RECEIVE
     }
 }
-
