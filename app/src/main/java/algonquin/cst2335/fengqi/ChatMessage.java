@@ -1,15 +1,29 @@
 package algonquin.cst2335.fengqi;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class ChatMessage {
+    @PrimaryKey (autoGenerate = true)
+    @ColumnInfo(name = "ID")
+    public int id;
+    public static final int TYPE_SENT = 1;
+    public static final int TYPE_RECEIVED = 2;
 
-    private final String message;
-    private final String timeSent;
-    private final boolean isSentButton;
+    @ColumnInfo(name = "Message")
+    protected String message;
+    @ColumnInfo(name = "TimeSent")
+    protected String timeSent;
+    @ColumnInfo(name = "MessageType")
+    protected int messageType; // Use this to store message type (sent or received)
 
-    public ChatMessage(String message, String timeSent, boolean isSentButton) {
+    public ChatMessage(String message, String timeSent, int messageType) {
         this.message = message;
         this.timeSent = timeSent;
-        this.isSentButton = isSentButton;
+        this.messageType = messageType;
     }
 
     public String getMessage() {
@@ -20,25 +34,10 @@ public class ChatMessage {
         return timeSent;
     }
 
-    public String getFormattedTime() {
-        return timeSent;
+    public int getMessageType() {
+        return messageType;
     }
-
-    public boolean isSentButton() {
-        return isSentButton;
-    }
-
-    public static ChatMessage createSentMessage(String message) {
-        String currentDateAndTime = getCurrentDateAndTime();
-        return new ChatMessage(message, currentDateAndTime, true);
-    }
-
-    public static ChatMessage createReceiveMessage(String message) {
-        String currentDateAndTime = getCurrentDateAndTime();
-        return new ChatMessage(message, currentDateAndTime, false);
-    }
-
-    private static String getCurrentDateAndTime() {
-        return String.valueOf(System.currentTimeMillis());
-    }
+    @NonNull
+    @Override
+    public String toString(){return message;}
 }
