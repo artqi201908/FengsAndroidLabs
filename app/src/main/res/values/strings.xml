@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">Feng\'s Android Labs</string>
-    <string name="hello_message">Hello World!</string>
-    <string name="button_message">I\'m a button</string>
-
+    <string name="hello_message" translatable="false">Hello world!</string>
+    <string name="button_message" translatable="false">I\'a button</string>
     <string name="message_placeholder" translatable="false">Message goes here</string>
     <string name="time_placeholder" translatable="false">Time goes here</string>
     <string name="send" translatable="false">Send</string>
@@ -11,3 +10,4 @@
     <string name="avatar_description" translatable="false">Avatar Image</string>
 
 </resources>
+
