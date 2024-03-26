@@ -2,10 +2,10 @@ package algonquin.cst2335.fengqi;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,24 +14,44 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import java.util.ArrayList;
-import java.time.LocalTime; // Requires API level 26 or higher
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 public class ChatRoom extends AppCompatActivity {
 
+    private static final String DATABASE_NAME = "message_database";
     private MyAdapter myAdapter;
     private ArrayList<ChatMessage> messages;
+    private ChatMessageDAO mDAO; // Declare DAO
+    private ExecutorService executorService = Executors.newSingleThreadExecutor(); // Only one declaration needed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
+        initDatabase();
         initRecyclerView();
         initSendButton();
         initReceiveButton();
+    }
+
+    private void initDatabase() {
+        // Initialize database and DAO
+        MessageDatabase db = Room.databaseBuilder(getApplicationContext(),
+                        MessageDatabase.class, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .build();
+        mDAO = db.cmDAO();
     }
 
     private void initRecyclerView() {
@@ -57,9 +77,13 @@ public class ChatRoom extends AppCompatActivity {
         String messageText = editText.getText().toString().trim();
         if (!messageText.isEmpty()) {
             ChatMessage newMessage = new ChatMessage(messageText, getCurrentTime(), isSentByUser);
+            executorService.execute(() -> mDAO.insertMessage(newMessage));
+
             messages.add(newMessage);
-            myAdapter.notifyItemInserted(messages.size() - 1);
-            editText.setText("");
+            runOnUiThread(() -> {
+                myAdapter.notifyItemInserted(messages.size() - 1);
+                editText.setText("");
+            });
         }
     }
 
@@ -83,16 +107,20 @@ public class ChatRoom extends AppCompatActivity {
         }
     }
 
-
     private void showDeleteAllMessagesDialog() {
         new AlertDialog.Builder(this)
                 .setTitle("Delete All Messages")
                 .setMessage("Are you sure you want to delete all messages?")
                 .setPositiveButton("Delete", (dialog, which) -> {
-                    int size = messages.size();
-                    messages.clear();
-                    myAdapter.notifyItemRangeRemoved(0, size);
-                    Toast.makeText(ChatRoom.this, "All messages deleted", Toast.LENGTH_SHORT).show();
+                    executorService.execute(() -> {
+                        mDAO.deleteAll();
+                        runOnUiThread(() -> {
+                            int size = messages.size();
+                            messages.clear();
+                            myAdapter.notifyItemRangeRemoved(0, size);
+                            Toast.makeText(ChatRoom.this, "All messages deleted", Toast.LENGTH_SHORT).show();
+                        });
+                    });
                 })
                 .setNegativeButton("Cancel", null)
                 .show();
@@ -102,9 +130,7 @@ public class ChatRoom extends AppCompatActivity {
         Toast.makeText(this, "Version 1.0, created by Feng Qi", Toast.LENGTH_SHORT).show();
     }
 
-    // Helper method to get current time using Java 8 Time API
     private String getCurrentTime() {
         return LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 }
-

@@ -1,5 +1,6 @@
 package algonquin.cst2335.fengqi;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Delete;
@@ -15,6 +16,9 @@ public interface ChatMessageDAO {
     List<ChatMessage> getAllMessages();
 
     @Delete
-    void deleteMessage(ChatMessage message);
+    void deleteMessage(ChatMessage message); // Method to delete a single message
+
+    @Query("DELETE FROM ChatMessage")
+    void deleteAll(); // Add this method to support deleting all messages
 }
 

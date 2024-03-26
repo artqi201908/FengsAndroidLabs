@@ -6,7 +6,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 @Database(entities = {ChatMessage.class}, version = 1)
-public abstract class MessageDatabase extends RoomDatabase {
+public abstract class MessageDatabase extends RoomDatabase  {
     private static MessageDatabase instance;
 
     public abstract ChatMessageDAO cmDAO();
@@ -20,5 +20,13 @@ public abstract class MessageDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+    public static void closeDatabase() {
+        if (instance != null && instance.isOpen()) {
+            instance.close();
+            instance = null;
+        }
+    }
+
 }
 
