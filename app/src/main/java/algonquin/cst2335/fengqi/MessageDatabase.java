@@ -21,3 +21,4 @@ public abstract class MessageDatabase extends RoomDatabase {
         return instance;
     }
 }
+

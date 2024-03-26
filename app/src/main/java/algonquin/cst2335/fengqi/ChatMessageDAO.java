@@ -18,4 +18,3 @@ public interface ChatMessageDAO {
     void deleteMessage(ChatMessage message);
 }
 
-

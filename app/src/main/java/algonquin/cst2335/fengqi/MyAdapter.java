@@ -7,13 +7,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.snackbar.Snackbar;
 
-
+import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyRowHolder> {
 
@@ -29,13 +30,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyRowHolder> {
         messages.add(message);
         notifyItemInserted(messages.size() - 1);
     }
-
-    public void setMessages(ArrayList<ChatMessage> newMessages) {
-        this.messages.clear(); // Clear existing messages
-        this.messages.addAll(newMessages); // Add all new messages
-        notifyDataSetChanged(); // Notify the adapter to refresh the list
-    }
-
 
     @NonNull
     @Override
@@ -58,10 +52,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyRowHolder> {
 
         if (message.isSent()) {
             holder.avatarImageView.setImageResource(R.drawable.send_image);
-            holder.messageText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END);
         } else {
             holder.avatarImageView.setImageResource(R.drawable.receive_image);
-            holder.messageText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
         }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

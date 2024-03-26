@@ -3,9 +3,9 @@ package algonquin.cst2335.fengqi;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.text.SimpleDateFormat;
 
 @Entity
 public class ChatMessage {

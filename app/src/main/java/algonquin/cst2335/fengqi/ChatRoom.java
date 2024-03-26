@@ -1,92 +1,110 @@
 package algonquin.cst2335.fengqi;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.room.Room;
-import java.text.SimpleDateFormat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import algonquin.cst2335.fengqi.databinding.ActivityChatRoomBinding;
+import java.time.LocalTime; // Requires API level 26 or higher
+import java.time.format.DateTimeFormatter;
 
 public class ChatRoom extends AppCompatActivity {
 
-    private static final String DATABASE_NAME = "chat_message_db";
-    private static final String DATE_FORMAT = "EEEE, dd-MMM-yyyy hh:mm-ss a";
-    private ActivityChatRoomBinding binding;
     private MyAdapter myAdapter;
-    private ChatMessageDAO mDAO;
-    // Use ExecutorService for better management of threads
-    private ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private ArrayList<ChatMessage> messages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityChatRoomBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_chat_room);
 
-        initializeDatabaseAndAdapter();
-        setupMessageSendListeners();
+        initRecyclerView();
+        initSendButton();
+        initReceiveButton();
     }
 
-    private void initializeDatabaseAndAdapter() {
-        mDAO = Room.databaseBuilder(getApplicationContext(), MessageDatabase.class, DATABASE_NAME)
-                .build()
-                .cmDAO();
-        myAdapter = new MyAdapter(this, new ArrayList<>());
-        binding.myRecycleView.setLayoutManager(new LinearLayoutManager(this));
-        binding.myRecycleView.setAdapter(myAdapter);
-
-        loadMessagesFromDatabase();
+    private void initRecyclerView() {
+        RecyclerView recyclerView = findViewById(R.id.myRecycleView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        messages = new ArrayList<>();
+        myAdapter = new MyAdapter(this, messages);
+        recyclerView.setAdapter(myAdapter);
     }
 
-    private void loadMessagesFromDatabase() {
-        // Use the executorService to fetch messages from the database
-        executorService.execute(() -> {
-            ArrayList<ChatMessage> messages = new ArrayList<>(mDAO.getAllMessages());
-            runOnUiThread(() -> myAdapter.setMessages(messages));
-        });
+    private void initSendButton() {
+        Button sendButton = findViewById(R.id.submitButton);
+        sendButton.setOnClickListener(v -> sendMessage(true));
     }
 
-    private void setupMessageSendListeners() {
-        binding.submitButton.setOnClickListener(click -> sendMessage(true));
-        binding.receiveButton.setOnClickListener(click -> sendMessage(false));
+    private void initReceiveButton() {
+        Button receiveButton = findViewById(R.id.receiveButton);
+        receiveButton.setOnClickListener(v -> sendMessage(false));
     }
 
-    private void sendMessage(boolean isSent) {
-        String messageText = binding.editText.getText().toString().trim();
+    private void sendMessage(boolean isSentByUser) {
+        EditText editText = findViewById(R.id.editText);
+        String messageText = editText.getText().toString().trim();
         if (!messageText.isEmpty()) {
-            addMessageToDatabase(messageText, isSent);
-            binding.editText.setText("");
+            ChatMessage newMessage = new ChatMessage(messageText, getCurrentTime(), isSentByUser);
+            messages.add(newMessage);
+            myAdapter.notifyItemInserted(messages.size() - 1);
+            editText.setText("");
         }
     }
 
-    private void addMessageToDatabase(String text, boolean isSent) {
-        String currentDateAndTime = getCurrentDateAndTime();
-        ChatMessage chatMessage = isSent ? ChatMessage.createSentMessage(text, currentDateAndTime)
-                : ChatMessage.createReceiveMessage(text, currentDateAndTime);
-
-        executorService.execute(() -> {
-            mDAO.insertMessage(chatMessage);
-            runOnUiThread(() -> {
-                myAdapter.addMessage(chatMessage);
-                binding.myRecycleView.scrollToPosition(myAdapter.getItemCount() - 1);
-            });
-        });
-    }
-
-    private String getCurrentDateAndTime() {
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-        return sdf.format(new Date());
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        return true;
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        executorService.shutdownNow(); // Ensure proper shutdown of the executor service
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_item1) {
+            showDeleteAllMessagesDialog();
+            return true;
+        } else if (id == R.id.action_item2) {
+            showToastAbout();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    private void showDeleteAllMessagesDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Delete All Messages")
+                .setMessage("Are you sure you want to delete all messages?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    int size = messages.size();
+                    messages.clear();
+                    myAdapter.notifyItemRangeRemoved(0, size);
+                    Toast.makeText(ChatRoom.this, "All messages deleted", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private void showToastAbout() {
+        Toast.makeText(this, "Version 1.0, created by Feng Qi", Toast.LENGTH_SHORT).show();
+    }
+
+    // Helper method to get current time using Java 8 Time API
+    private String getCurrentTime() {
+        return LocalTime.now().format(DateTimeFormatter.ofPattern("hh:mm a"));
     }
 }
+
